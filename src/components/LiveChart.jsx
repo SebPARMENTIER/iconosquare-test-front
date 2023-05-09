@@ -1,16 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis, ResponsiveContainer } from 'recharts'
 import { useLiveChartContext } from '../utils/hooks/useLiveChartContext';
 
-const LiveChart = () => {
+const LiveChart = ({ sendChartCellDataToTable }) => {
     const { data } = useLiveChartContext();
     const nbTotalEvents = data?.events?.length
     const eventsFiltered = data.events.slice(nbTotalEvents - 20, nbTotalEvents);
+    
     return (
         <div className="mb-8">
             <ResponsiveContainer height={250}>
                 <AreaChart
-                    onClick={(e) => console.log(e.activeTooltipIndex)}
+                    onClick={(e) => sendChartCellDataToTable(e.activeTooltipIndex)}
                     data={eventsFiltered}
                     margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
                 >
@@ -51,7 +53,7 @@ const LiveChart = () => {
 };
 
 LiveChart.propTypes = {
-    
+    sendChartCellDataToTable: PropTypes.func.isRequired
 };
 
 export default LiveChart;
