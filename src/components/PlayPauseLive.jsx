@@ -13,11 +13,11 @@ const PlayPauseLive = () => {
         return () => clearInterval(intervalId)
     }
     return (
-        <div className="flex justify-center">
+        <div className="flex flex-col justify-center items-center mb-6">
             <button
                 onClick={pauseEvent}
                 className="
-                    px-4 py-1 mb-10 text-sm text-purple-600 font-semibold
+                    px-4 py-1 mb-2 text-sm text-purple-600 font-semibold
                     rounded-full border border-purple-200
                     hover:text-white hover:bg-purple-600 hover:border-transparent
                     focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2
@@ -27,6 +27,9 @@ const PlayPauseLive = () => {
             >
                 {isPausable ? 'PAUSE' : 'PLAY'}
             </button>
+            <p className="italic">
+                It's easier to edit a value in the table by clicking on pause button.
+            </p>
         </div>
     )
 }
